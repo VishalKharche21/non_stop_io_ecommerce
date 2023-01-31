@@ -1,0 +1,33 @@
+{% extends 'index.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+<center>
+  <div class="container row authentication login">
+    <div class="col col-login mx-auto">
+      <form class="logincard" method="POST" action="" novalidate>
+        {% csrf_token %}
+        <div class=" container logincard-body mt-2 text-center p-6">
+          <div class="card-title text-center fs-1">Login to your Account</div>
+          <div class="input-icon form-group wrap-input">
+            {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+            <div class="text-center text-danger mt-1">{{error}}</div>
+            {% endfor %} {% endif %} {% for fm in form %} {{fm}}
+            {{fm.errors|striptags}} {% endfor %}
+          </div>
+          <div class="text-red"></div>
+          <br />
+          <div class="form-footer">
+            <input type="submit" name="" id="" value="Sign in" class="btn btn-primary btn-block" />
+          </div>
+          <div class="text-center text-muted mt-3">
+            Don't have account yet? <a href="{% url 'signup' %}">Sign up</a>
+          </div>
+          
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</center>
+{% endblock content %}

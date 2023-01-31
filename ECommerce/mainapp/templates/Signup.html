@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<center>
+<div class="container">
+    <form class="row g-3 authentication " method="POST" novalidate>
+        {% csrf_token %}
+        <div class="card-title text-center mt-5 fs-1">Create New Account</div>
+        <div class="row card-body sign-up-page p-7">
+            <div class="col-md-3 mt-3">
+                {{form.username|as_crispy_field}}
+            </div>
+            <div class="col-md-3 mt-3">
+                {{form.first_name|as_crispy_field}}
+            </div>
+            <div class="col-md-3 mt-3">
+                {{form.last_name|as_crispy_field}}
+            </div>
+            <div class="col-md-3 off mt-3">
+                {{form2.age|as_crispy_field}}
+            </div>
+        
+            <div class="col-md-12 off mt-3">
+                {{form2.address|as_crispy_field}}
+            </div>
+            
+            <div class="col-md-6 off mt-3">
+                {{form.password1|as_crispy_field}}
+            </div>
+            <div class="col-md-6 off mt-3">
+                {{form.password2|as_crispy_field}}
+            </div>
+            
+            <input type="submit" value="SignUp" class="btn btn-primary btn-block mt-3" name="" id="">
+            <div class="text-center text-muted mt-4">
+                Already have account? <a href="{% url 'login' %}">Sign in</a>
+            </div>
+            <div class="text-center text-success text-muted mt-4">
+    
+            </div>
+        </div>
+    </form>
+</div>
+</center>
+
+
+<script src="{% static 'js/message.js' %}"></script>
+{% if messages %}
+{% for message in messages %}
+<script>
+    swal({
+        text: "{{message}}",
+        icon: "success",
+    }).then(function() {
+    window.location = "{% url 'login' %}";
+});
+</script>
+{% endfor %}
+{% endif %}
+{% endblock content %}
